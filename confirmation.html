@@ -125,6 +125,26 @@
             font-size: 1rem;
         }
 
+        /* Address Selection Button */
+        .address-selection {
+            margin-bottom: 20px;
+        }
+
+        .address-selection button {
+            padding: 10px 20px;
+            background: #C12500; /* Updated color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .address-selection button:hover {
+            background: #FD9C00; /* Updated color */
+        }
+
         /* Confirm Button */
         .confirm-btn {
             padding: 15px 30px;
@@ -174,6 +194,11 @@
         <h1>Order Confirmation</h1>
         <h2>Review Your Order</h2>
         <div class="order-details" id="orderDetails"></div>
+
+        <!-- Address Selection Button -->
+        <div class="address-selection">
+            <button onclick="chooseAddress()">Choose Address</button>
+        </div>
 
         <!-- Schedule Arrival Time -->
         <div class="schedule-arrival">
@@ -226,6 +251,17 @@
 
                 orderDetailsContainer.appendChild(orderItem);
             });
+        }
+
+        // Choose Address Functionality
+        function chooseAddress() {
+            const address = prompt("Please enter your delivery address:");
+            if (address) {
+                alert(`Address selected: ${address}`);
+                localStorage.setItem('deliveryAddress', address);
+            } else {
+                alert("Address is required for delivery.");
+            }
         }
 
         // Final Confirmation
