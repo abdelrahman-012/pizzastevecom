@@ -24,7 +24,7 @@
         .header-image {
             width: 22%;
             height: 203px;
-            object-fit:contain;
+            object-fit: contain;
         }
 
         /* Confirmation Section */
@@ -91,6 +91,46 @@
             color: #C12500; /* Updated color */
         }
 
+        /* Address Selection Form */
+        .address-form {
+            margin-bottom: 20px;
+            text-align: left;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .address-form label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .address-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .address-form button {
+            padding: 10px 20px;
+            background: #C12500; /* Updated color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .address-form button:hover {
+            background: #FD9C00; /* Updated color */
+        }
+
         /* Schedule Arrival Time */
         .schedule-arrival {
             margin-bottom: 20px;
@@ -123,26 +163,6 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
-        }
-
-        /* Address Selection Button */
-        .address-selection {
-            margin-bottom: 20px;
-        }
-
-        .address-selection button {
-            padding: 10px 20px;
-            background: #C12500; /* Updated color */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .address-selection button:hover {
-            background: #FD9C00; /* Updated color */
         }
 
         /* Confirm Button */
@@ -195,9 +215,11 @@
         <h2>Review Your Order</h2>
         <div class="order-details" id="orderDetails"></div>
 
-        <!-- Address Selection Button -->
-        <div class="address-selection">
-            <button onclick="chooseAddress()">Choose Address</button>
+        <!-- Address Selection Form -->
+        <div class="address-form">
+            <label for="deliveryAddress">Delivery Address:</label>
+            <input type="text" id="deliveryAddress" placeholder="Enter your delivery address">
+            <button onclick="saveAddress()">Save Address</button>
         </div>
 
         <!-- Schedule Arrival Time -->
@@ -253,14 +275,14 @@
             });
         }
 
-        // Choose Address Functionality
-        function chooseAddress() {
-            const address = prompt("Please enter your delivery address:");
+        // Save Address Functionality
+        function saveAddress() {
+            const address = document.getElementById('deliveryAddress').value;
             if (address) {
-                alert(`Address selected: ${address}`);
                 localStorage.setItem('deliveryAddress', address);
+                alert('Address saved successfully!');
             } else {
-                alert("Address is required for delivery.");
+                alert('Please enter a valid address.');
             }
         }
 
@@ -268,14 +290,16 @@
         function finalConfirm() {
             const arrivalTime = document.getElementById('arrivalTime').value;
             const paymentMethod = document.getElementById('paymentMethod').value;
+            const address = document.getElementById('deliveryAddress').value;
 
-            if (!arrivalTime || !paymentMethod) {
-                alert('Please schedule the arrival time and select a payment method.');
+            if (!arrivalTime || !paymentMethod || !address) {
+                alert('Please fill in all fields: address, arrival time, and payment method.');
                 return;
             }
 
             localStorage.setItem('arrivalTime', arrivalTime);
             localStorage.setItem('paymentMethod', paymentMethod);
+            localStorage.setItem('deliveryAddress', address);
             window.location.href = 'final-confirmation.html';
         }
     </script>
