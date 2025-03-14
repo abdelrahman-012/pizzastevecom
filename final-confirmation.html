@@ -24,7 +24,7 @@
         .header-image {
             width: 22%;
             height: 203px;
-            object-fit:contain;
+            object-fit: contain;
         }
 
         /* Confirmation Section */
@@ -65,8 +65,9 @@
         footer .social-links a:hover {
             color: #FD9C00; /* Updated color */
         }
-               /* Confirm Button */
-               .confirm-btn {
+
+        /* Confirm Button */
+        .confirm-btn {
             padding: 15px 30px;
             background: #C12500; /* Updated color */
             color: #fff;
@@ -90,9 +91,10 @@
     <section class="confirmation">
         <h1>Order Confirmed!</h1>
         <p>Your order will arrive at <strong>${localStorage.getItem('arrivalTime')}</strong>.</p>
+        <p>Delivery Address: <strong>${localStorage.getItem('deliveryAddress')}</strong>.</p>
         <p>Payment Method: <strong>${localStorage.getItem('paymentMethod')}</strong>.</p>
-        <p>Thank you for choosing Pizza steve!</p>
-        <a href="index.html"><button class="confirm-btn" onclick="finalConfirm()">done</button></a>
+        <p>Thank you for choosing Pizza Steve!</p>
+        <a href="index.html"><button class="confirm-btn">Done</button></a>
     </section>
 
     <!-- Footer -->
