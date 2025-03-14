@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Pizza Palace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #f9f9f9;
+            text-align: center;
+        }
+
+        /* Header Image */
+        .header-image {
+            width: 22%;
+            height: 203px;
+            object-fit:contain;
+        }
+
+        /* Confirmation Section */
+        .confirmation {
+            padding: 20px;
+        }
+
+        .confirmation h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #C12500; /* Updated color */
+        }
+
+        .confirmation h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .order-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .order-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .order-item .details {
+            text-align: left;
+        }
+
+        .order-item .details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .order-item .details p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .order-item .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #C12500; /* Updated color */
+        }
+
+        /* Schedule Arrival Time */
+        .schedule-arrival {
+            margin-bottom: 20px;
+        }
+
+        .schedule-arrival label {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .schedule-arrival input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Payment Method */
+        .payment-method {
+            margin-bottom: 20px;
+        }
+
+        .payment-method label {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .payment-method select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Confirm Button */
+        .confirm-btn {
+            padding: 15px 30px;
+            background: #C12500; /* Updated color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .confirm-btn:hover {
+            background: #FD9C00; /* Updated color */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #FD9C00; /* Updated color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Image -->
+    <img src="pic/PIZA SE.png" alt="Header Image" class="header-image">
+
+    <!-- Confirmation Section -->
+    <section class="confirmation">
+        <h1>Order Confirmation</h1>
+        <h2>Review Your Order</h2>
+        <div class="order-details" id="orderDetails"></div>
+
+        <!-- Schedule Arrival Time -->
+        <div class="schedule-arrival">
+            <label for="arrivalTime">Schedule Arrival Time:</label>
+            <input type="datetime-local" id="arrivalTime" name="arrivalTime">
+        </div>
+
+        <!-- Payment Method -->
+        <div class="payment-method">
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod">
+                <option value="cash">Cash on Delivery</option>
+                <option value="card">Credit/Debit Card</option>
+                <option value="online">Online Payment</option>
+            </select>
+        </div>
+
+        <!-- Confirm Button -->
+        <a href="final-confirmation.html"><button class="confirm-btn" onclick="finalConfirm()">Confirm Order</button></a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Display Order Details
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+        const orderDetailsContainer = document.getElementById('orderDetails');
+
+        if (orderDetails) {
+            orderDetails.forEach(item => {
+                const orderItem = document.createElement('div');
+                orderItem.classList.add('order-item');
+
+                orderItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="details">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                    <span class="price">$${item.price}</span>
+                `;
+
+                orderDetailsContainer.appendChild(orderItem);
+            });
+        }
+
+        // Final Confirmation
+        function finalConfirm() {
+            const arrivalTime = document.getElementById('arrivalTime').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            if (!arrivalTime || !paymentMethod) {
+                alert('Please schedule the arrival time and select a payment method.');
+                return;
+            }
+
+            localStorage.setItem('arrivalTime', arrivalTime);
+            localStorage.setItem('paymentMethod', paymentMethod);
+            window.location.href = 'final-confirmation.html';
+        }
+    </script>
+</body>
+</html>

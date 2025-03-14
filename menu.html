@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Palace - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #f9f9f9;
+            animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #C12500;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #FD9C00;
+        }
+
+        nav .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 100px 20px 50px;
+            text-align: center;
+        }
+
+        .menu h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons .btn {
+            padding: 10px 20px;
+            background: #C12500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 5px;
+        }
+
+        .filter-buttons .btn.active {
+            background: #FD9C00;
+        }
+
+        .filter-buttons .btn:hover {
+            background: #FD9C00;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .menu-item {
+            flex: 0 0 calc(33.333% - 20px);
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item img {
+            width: 70%;
+            height: 200px;
+            object-fit:contain;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .menu-item p {
+            font-size: 1rem;
+            color: #666;
+            padding: 0 15px 15px;
+        }
+
+        .menu-item .checkmark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #C12500;
+            display: none;
+        }
+
+        .menu-item.selected .checkmark {
+            display: block;
+        }
+
+        .menu-item .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #C12500;
+            margin: 10px 0;
+        }
+
+        .menu-item .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #C12500;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-item .btn:hover {
+            background: #FD9C00;
+        }
+
+        /* Confirm Order Button */
+        .confirm-order-btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #C12500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .confirm-order-btn:hover {
+            background: #FD9C00;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #FD9C00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-item {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-item {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="pic/PIZZA UP.png" alt="Pizza Palace Logo">
+            Pizza steve
+        </div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="menu.html"><i class="fas fa-pizza-slice"></i> Menu</a></li>
+            <li><a href="restaurant.html"><i class="fas fa-store"></i> Restaurant</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart cart-icon"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <h2>Our Menu</h2>
+        <div class="filter-buttons">
+            <button class="btn active" data-filter="all">All</button>
+            <button class="btn" data-filter="meat">Pizza with Meat</button>
+            <button class="btn" data-filter="chicken">Pizza with Chicken</button>
+            <button class="btn" data-filter="vegetarian">Vegetarian Pizza</button>
+            <button class="btn" data-filter="mixed">Mixed Pizza</button>
+        </div>
+        <div class="menu-container">
+            <!-- Pizza with Meat -->
+            <div class="menu-item meat" data-price="12">
+                <img src="pic/pngwing.com (10).png" alt="Pepperoni Pizza">
+                <h3>Pepperoni Pizza</h3>
+                <p>A classic favorite with spicy pepperoni and melted cheese.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$12</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+            <div class="menu-item meat" data-price="14">
+                <img src="pic/pngwing.com (12).png" alt="Meat Lovers Pizza">
+                <h3>Meat Lovers Pizza</h3>
+                <p>Loaded with pepperoni, sausage, bacon, and ham.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$14</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Pizza with Chicken -->
+            <div class="menu-item chicken" data-price="13">
+                <img src="pic/pngwing.com (6).png" alt="BBQ Chicken Pizza">
+                <h3>BBQ Chicken Pizza</h3>
+                <p>Grilled chicken, BBQ sauce, onions, and cilantro.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$13</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Vegetarian Pizza -->
+            <div class="menu-item vegetarian" data-price="11">
+                <img src="pic/pngwing.com (7).png" alt="Veggie Pizza">
+                <h3>Veggie Pizza</h3>
+                <p>Loaded with fresh vegetables and a tangy sauce.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$11</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Mixed Pizza -->
+            <div class="menu-item mixed" data-price="15">
+                <img src="pic/pngwing.com (8).png" alt="Supreme Pizza">
+                <h3>Supreme Pizza</h3>
+                <p>A mix of pepperoni, sausage, mushrooms, onions, and bell peppers.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$15</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+            <div class="menu-item meat" data-price="12">
+                <img src="pic/pngwing.com (10).png" alt="Pepperoni Pizza">
+                <h3>Pepperoni Pizza</h3>
+                <p>A classic favorite with spicy pepperoni and melted cheese.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$12</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+            <div class="menu-item meat" data-price="14">
+                <img src="pic/pngwing.com (12).png" alt="Meat Lovers Pizza">
+                <h3>Meat Lovers Pizza</h3>
+                <p>Loaded with pepperoni, sausage, bacon, and ham.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$14</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Pizza with Chicken -->
+            <div class="menu-item chicken" data-price="13">
+                <img src="pic/pngwing.com (6).png" alt="BBQ Chicken Pizza">
+                <h3>BBQ Chicken Pizza</h3>
+                <p>Grilled chicken, BBQ sauce, onions, and cilantro.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$13</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Vegetarian Pizza -->
+            <div class="menu-item vegetarian" data-price="11">
+                <img src="pic/pngwing.com (7).png" alt="Veggie Pizza">
+                <h3>Veggie Pizza</h3>
+                <p>Loaded with fresh vegetables and a tangy sauce.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$11</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+
+            <!-- Mixed Pizza -->
+            <div class="menu-item mixed" data-price="15">
+                <img src="pic/pngwing.com (8).png" alt="Supreme Pizza">
+                <h3>Supreme Pizza</h3>
+                <p>A mix of pepperoni, sausage, mushrooms, onions, and bell peppers.</p>
+                <div class="checkmark">&#10003;</div>
+                <span class="price">$15</span>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+        </div>
+
+        <!-- Confirm Order Button -->
+        <button class="confirm-order-btn" onclick="confirmOrder()">Confirm Order</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Filter Menu Items
+        const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                menuItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Select Menu Items
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('selected');
+            });
+        });
+
+        // Confirm Order Functionality
+        function confirmOrder() {
+            const selectedItems = document.querySelectorAll('.menu-item.selected');
+            if (selectedItems.length === 0) {
+                alert('Please select at least one item to confirm your order.');
+                return;
+            }
+
+            const cart = [];
+            selectedItems.forEach(item => {
+                const itemName = item.querySelector('h3').textContent;
+                const itemPrice = parseFloat(item.getAttribute('data-price'));
+                cart.push({ name: itemName, price: itemPrice });
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Pizza Palace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #f9f9f9;
+            text-align: center;
+        }
+
+        /* Header Image */
+        .header-image {
+            width: 22%;
+            height: 203px;
+            object-fit:contain;
+        }
+
+        /* Confirmation Section */
+        .confirmation {
+            padding: 20px;
+        }
+
+        .confirmation h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #C12500; /* Updated color */
+        }
+
+        .confirmation p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #FD9C00; /* Updated color */
+        }
+               /* Confirm Button */
+               .confirm-btn {
+            padding: 15px 30px;
+            background: #C12500; /* Updated color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .confirm-btn:hover {
+            background: #FD9C00; /* Updated color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Image -->
+    <img src="pic/PIZZ AA BATN.png" alt="Header Image" class="header-image">
+
+    <!-- Confirmation Section -->
+    <section class="confirmation">
+        <h1>Order Confirmed!</h1>
+        <p>Your order will arrive at <strong>${localStorage.getItem('arrivalTime')}</strong>.</p>
+        <p>Payment Method: <strong>${localStorage.getItem('paymentMethod')}</strong>.</p>
+        <p>Thank you for choosing Pizza steve!</p>
+        <a href="index.html"><button class="confirm-btn" onclick="finalConfirm()">done</button></a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
