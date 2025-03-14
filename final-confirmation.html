@@ -90,9 +90,9 @@
     <!-- Confirmation Section -->
     <section class="confirmation">
         <h1>Order Confirmed!</h1>
-        <p>Your order will arrive at <strong>${localStorage.getItem('arrivalTime')}</strong>.</p>
-        <p>Delivery Address: <strong>${localStorage.getItem('deliveryAddress')}</strong>.</p>
-        <p>Payment Method: <strong>${localStorage.getItem('paymentMethod')}</strong>.</p>
+        <p>Your order will arrive at <strong id="arrivalTimeDisplay"></strong>.</p>
+        <p>Delivery Address: <strong id="deliveryAddressDisplay"></strong>.</p>
+        <p>Payment Method: <strong id="paymentMethodDisplay"></strong>.</p>
         <p>Thank you for choosing Pizza Steve!</p>
         <a href="index.html"><button class="confirm-btn">Done</button></a>
     </section>
@@ -106,5 +106,17 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
+
+    <script>
+        // Retrieve data from localStorage
+        const arrivalTime = localStorage.getItem('arrivalTime');
+        const deliveryAddress = localStorage.getItem('deliveryAddress');
+        const paymentMethod = localStorage.getItem('paymentMethod');
+
+        // Display the data in the HTML
+        document.getElementById('arrivalTimeDisplay').textContent = arrivalTime || 'Not specified';
+        document.getElementById('deliveryAddressDisplay').textContent = deliveryAddress || 'Not specified';
+        document.getElementById('paymentMethodDisplay').textContent = paymentMethod || 'Not specified';
+    </script>
 </body>
 </html>
