@@ -16,31 +16,80 @@
         body {
             font-family: 'Arial', sans-serif;
             color: #333;
-            background: #f9f9f9;
+            background: #fd9c00; /* Same as menu.html */
+            animation: fadeIn 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Header Image */
         .header-image {
             width: 22%;
-            height: 203px;
+            height: auto;
             object-fit: contain;
+            margin-top: 20px; /* Adjusted for spacing */
         }
 
         /* Confirmation Section */
         .confirmation {
             padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: glow 2s infinite alternate;
         }
 
         .confirmation h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #C12500; /* Updated color */
+            color: #C12500; /* Same as menu.html */
+            text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .confirmation h1:hover {
+            text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1);
+            transform: scale(1.05);
         }
 
         .confirmation p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .confirmation strong {
+            color: #C12500;
+        }
+
+        /* Confirm Button */
+        .confirm-btn {
+            padding: 15px 30px;
+            background: #C12500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            animation: glow 2s infinite alternate;
+        }
+
+        .confirm-btn:hover {
+            background: #FD9C00;
+            box-shadow: 0 0 15px rgba(253, 156, 0, 0.8);
         }
 
         /* Footer */
@@ -49,6 +98,8 @@
             padding: 20px;
             background: #333;
             color: #fff;
+            width: 100%;
+            margin-top: auto; /* Push footer to the bottom */
         }
 
         footer .social-links {
@@ -63,23 +114,17 @@
         }
 
         footer .social-links a:hover {
-            color: #FD9C00; /* Updated color */
+            color: #FD9C00;
         }
 
-        /* Confirm Button */
-        .confirm-btn {
-            padding: 15px 30px;
-            background: #C12500; /* Updated color */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .confirm-btn:hover {
-            background: #FD9C00; /* Updated color */
+        /* Glow Animation */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 50px rgb(255, 255, 255);
+            }
+            100% {
+                box-shadow: 0 0 50px rgb(255, 0, 0);
+            }
         }
     </style>
 </head>
@@ -99,11 +144,11 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        <p>&copy; 2025 Pizza steve. All rights reserved.</p>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
