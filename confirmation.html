@@ -16,7 +16,7 @@
         body {
             font-family: 'Arial', sans-serif;
             color: #333;
-            background: #f9f9f9;
+            background: #ffa92c;
             text-align: center;
         }
 
@@ -32,16 +32,30 @@
             padding: 20px;
         }
 
+        /* Glow and Hover Effect for "Order Confirmation" Heading */
         .confirmation h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #C12500; /* Updated color */
+            color: #ffffff; /* Set the text color */
+            text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8); /* Glow effect */
+            transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
         }
 
+        .confirmation h1:hover {
+            text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1); /* Stronger glow on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
         .confirmation h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #333;
+            color: #ffffff; /* Set the text color */
+            text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8); /* Glow effect */
+            transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        }
+
+        .confirmation h2:hover {
+            text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1); /* Stronger glow on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
         }
 
         .order-details {
@@ -203,6 +217,18 @@
         footer .social-links a:hover {
             color: #FD9C00; /* Updated color */
         }
+        .confirmation h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff; /* Set the text color */
+    text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8); /* Glow effect */
+    transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.confirmation h1:hover {
+    text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1); /* Stronger glow on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
     </style>
 </head>
 <body>
