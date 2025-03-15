@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Palace - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #fd9c00;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #C12500;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #FD9C00;
+        }
+
+        nav .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px 50px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .about h2:hover {
+            text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1);
+            transform: scale(1.05);
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img.active {
+            display: block;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 2rem;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #FD9C00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="pic/PIZZA UP.png" alt="Pizza Palace Logo">
+            Pizza Steve
+        </div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="menu.html"><i class="fas fa-pizza-slice"></i> Menu</a></li>
+            <li><a href="restaurant.html"><i class="fas fa-store"></i> Restaurant</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart cart-icon"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Pizza Palace</h2>
+        <p>
+            Welcome to Pizza steve, where passion meets flavor! Since 1995, we've been serving the most delicious and authentic pizzas in town. Our secret lies in using only the freshest ingredients and traditional recipes passed down through generations.
+        </p>
+        <p>
+            Located in the heart of the city, our restaurant offers a cozy and welcoming atmosphere for families, friends, and pizza lovers. Whether you're dining in or ordering for delivery, we guarantee a memorable experience with every bite.
+        </p>
+        <p>
+            Meet our talented team of chefs who pour their heart into every pizza they make. From classic Margherita to gourmet specialties, we have something for everyone. Come visit us and taste the difference!
+        </p>
+
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <div class="arrow left" onclick="prevImage()">&#10094;</div>
+            <!-- Restaurant Images -->
+            <img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg" alt="Restaurant Interior" class="active">
+            <img src="https://images.pexels.com/photos/1484516/pexels-photo-1484516.jpeg" alt="Dining Area">
+            <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg" alt="Kitchen Team">
+            <img src="https://images.pexels.com/photos/2290070/pexels-photo-2290070.jpeg" alt="Chef Preparing Pizza">
+            <img src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg" alt="Restaurant Ambiance">
+            <img src="https://images.pexels.com/photos/1267326/pexels-photo-1267326.jpeg" alt="Pizza Oven">
+            <div class="arrow right" onclick="nextImage()">&#10095;</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Image Slider Functionality
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        // Automatically cycle images every 5 seconds
+        setInterval(nextImage, 5000);
+    </script>
+</body>
+</html>
