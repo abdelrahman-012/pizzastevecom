@@ -16,18 +16,13 @@
         body {
             font-family: 'Arial', sans-serif;
             color: #333;
-            background: #f9f9f9;
-            animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
+            background: #fd9c00;
+            animation: fadeIn 1s ease-in-out;
         }
 
-        /* Fade-in Animation */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Navigation Bar */
@@ -106,8 +101,8 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s ease;
-            margin: 5px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            animation: glow 2s infinite alternate;
         }
 
         .filter-buttons .btn.active {
@@ -116,6 +111,7 @@
 
         .filter-buttons .btn:hover {
             background: #FD9C00;
+            box-shadow: 0 0 15px rgba(253, 156, 0, 0.8);
         }
 
         .menu-container {
@@ -131,18 +127,19 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: glow 2s infinite alternate;
         }
 
         .menu-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .menu-item img {
             width: 70%;
             height: 200px;
-            object-fit:contain;
+            object-fit: contain;
         }
 
         .menu-item h3 {
@@ -157,19 +154,6 @@
             padding: 0 15px 15px;
         }
 
-        .menu-item .checkmark {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            color: #C12500;
-            display: none;
-        }
-
-        .menu-item.selected .checkmark {
-            display: block;
-        }
-
         .menu-item .price {
             font-size: 1.2rem;
             font-weight: bold;
@@ -177,19 +161,79 @@
             margin: 10px 0;
         }
 
-        .menu-item .btn {
-            display: inline-block;
-            padding: 10px 20px;
+        /* Checkbox Style */
+        .menu-item input[type="checkbox"] {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Quantity Counter */
+        .quantity-counter {
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .quantity-counter button {
             background: #C12500;
             color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 15px;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer;
             transition: background 0.3s ease;
         }
 
-        .menu-item .btn:hover {
+        .quantity-counter button:hover {
             background: #FD9C00;
+        }
+
+        .quantity-counter input {
+            width: 50px;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Show Quantity Counter when Checkbox is Checked */
+        .menu-item input[type="checkbox"]:checked ~ .quantity-counter {
+            display: flex;
+        }
+
+        /* Toppings Section */
+        .toppings-section {
+            margin-top: 30px;
+            text-align: left;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .toppings-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .toppings-section label {
+            display: block;
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .toppings-section input[type="checkbox"] {
+            margin-right: 10px;
         }
 
         /* Confirm Order Button */
@@ -202,11 +246,13 @@
             border-radius: 5px;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            animation: glow 2s infinite alternate;
         }
 
         .confirm-order-btn:hover {
             background: #FD9C00;
+            box-shadow: 0 0 15px rgba(253, 156, 0, 0.8);
         }
 
         /* Footer */
@@ -232,6 +278,30 @@
             color: #FD9C00;
         }
 
+        /* Glow and Hover Effect for "Our Menu" Heading */
+.menu h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff; /* Set the text color */
+    text-shadow: 0 0 10px rgba(255, 115, 0, 0.8), 0 0 20px rgba(253, 156, 0, 0.8); /* Glow effect */
+    transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.menu h2:hover {
+    text-shadow: 0 0 20px rgb(255, 255, 255), 0 0 40px rgba(253, 156, 0, 1); /* Stronger glow on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+        /* Glow Animation */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 50px rgb(255, 255, 255);
+            }
+            100% {
+                box-shadow: 0 0 50px rgb(255, 0, 0);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .menu-item {
@@ -251,7 +321,7 @@
     <nav>
         <div class="logo">
             <img src="pic/PIZZA UP.png" alt="Pizza Palace Logo">
-            Pizza steve
+            Pizza Steve
         </div>
         <ul>
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -275,97 +345,80 @@
         <div class="menu-container">
             <!-- Pizza with Meat -->
             <div class="menu-item meat" data-price="12">
+                <input type="checkbox" id="pepperoni">
                 <img src="pic/pngwing.com (10).png" alt="Pepperoni Pizza">
                 <h3>Pepperoni Pizza</h3>
                 <p>A classic favorite with spicy pepperoni and melted cheese.</p>
-                <div class="checkmark">&#10003;</div>
+                <div class="quantity-counter">
+                    <button class="minus-btn">-</button>
+                    <input type="number" class="quantity" value="0" min="0">
+                    <button class="plus-btn">+</button>
+                </div>
                 <span class="price">$12</span>
-                
             </div>
             <div class="menu-item meat" data-price="14">
+                <input type="checkbox" id="meat-lovers">
                 <img src="pic/pngwing.com (12).png" alt="Meat Lovers Pizza">
                 <h3>Meat Lovers Pizza</h3>
                 <p>Loaded with pepperoni, sausage, bacon, and ham.</p>
-                <div class="checkmark">&#10003;</div>
+                <div class="quantity-counter">
+                    <button class="minus-btn">-</button>
+                    <input type="number" class="quantity" value="0" min="0">
+                    <button class="plus-btn">+</button>
+                </div>
                 <span class="price">$14</span>
-                
             </div>
 
             <!-- Pizza with Chicken -->
             <div class="menu-item chicken" data-price="13">
+                <input type="checkbox" id="bbq-chicken">
                 <img src="pic/pngwing.com (6).png" alt="BBQ Chicken Pizza">
                 <h3>BBQ Chicken Pizza</h3>
                 <p>Grilled chicken, BBQ sauce, onions, and cilantro.</p>
-                <div class="checkmark">&#10003;</div>
+                <div class="quantity-counter">
+                    <button class="minus-btn">-</button>
+                    <input type="number" class="quantity" value="0" min="0">
+                    <button class="plus-btn">+</button>
+                </div>
                 <span class="price">$13</span>
-                
             </div>
 
             <!-- Vegetarian Pizza -->
             <div class="menu-item vegetarian" data-price="11">
+                <input type="checkbox" id="veggie">
                 <img src="pic/pngwing.com (7).png" alt="Veggie Pizza">
                 <h3>Veggie Pizza</h3>
                 <p>Loaded with fresh vegetables and a tangy sauce.</p>
-                <div class="checkmark">&#10003;</div>
+                <div class="quantity-counter">
+                    <button class="minus-btn">-</button>
+                    <input type="number" class="quantity" value="0" min="0">
+                    <button class="plus-btn">+</button>
+                </div>
                 <span class="price">$11</span>
-                
             </div>
 
             <!-- Mixed Pizza -->
             <div class="menu-item mixed" data-price="15">
+                <input type="checkbox" id="supreme">
                 <img src="pic/pngwing.com (8).png" alt="Supreme Pizza">
                 <h3>Supreme Pizza</h3>
                 <p>A mix of pepperoni, sausage, mushrooms, onions, and bell peppers.</p>
-                <div class="checkmark">&#10003;</div>
+                <div class="quantity-counter">
+                    <button class="minus-btn">-</button>
+                    <input type="number" class="quantity" value="0" min="0">
+                    <button class="plus-btn">+</button>
+                </div>
                 <span class="price">$15</span>
-                
             </div>
-            <div class="menu-item meat" data-price="12">
-                <img src="pic/pngwing.com (10).png" alt="Pepperoni Pizza">
-                <h3>Pepperoni Pizza</h3>
-                <p>A classic favorite with spicy pepperoni and melted cheese.</p>
-                <div class="checkmark">&#10003;</div>
-                <span class="price">$12</span>
-                
-            </div>
-            <div class="menu-item meat" data-price="14">
-                <img src="pic/pngwing.com (12).png" alt="Meat Lovers Pizza">
-                <h3>Meat Lovers Pizza</h3>
-                <p>Loaded with pepperoni, sausage, bacon, and ham.</p>
-                <div class="checkmark">&#10003;</div>
-                <span class="price">$14</span>
-                
-            </div>
+        </div>
 
-            <!-- Pizza with Chicken -->
-            <div class="menu-item chicken" data-price="13">
-                <img src="pic/pngwing.com (6).png" alt="BBQ Chicken Pizza">
-                <h3>BBQ Chicken Pizza</h3>
-                <p>Grilled chicken, BBQ sauce, onions, and cilantro.</p>
-                <div class="checkmark">&#10003;</div>
-                <span class="price">$13</span>
-                
-            </div>
-
-            <!-- Vegetarian Pizza -->
-            <div class="menu-item vegetarian" data-price="11">
-                <img src="pic/pngwing.com (7).png" alt="Veggie Pizza">
-                <h3>Veggie Pizza</h3>
-                <p>Loaded with fresh vegetables and a tangy sauce.</p>
-                <div class="checkmark">&#10003;</div>
-                <span class="price">$11</span>
-                
-            </div>
-
-            <!-- Mixed Pizza -->
-            <div class="menu-item mixed" data-price="15">
-                <img src="pic/pngwing.com (8).png" alt="Supreme Pizza">
-                <h3>Supreme Pizza</h3>
-                <p>A mix of pepperoni, sausage, mushrooms, onions, and bell peppers.</p>
-                <div class="checkmark">&#10003;</div>
-                <span class="price">$15</span>
-                
-            </div>
+        <!-- Toppings Section -->
+        <div class="toppings-section">
+            <h3>Add Toppings</h3>
+            <label><input type="checkbox" id="olives" data-price="1"> Olives (+$1)</label>
+            <label><input type="checkbox" id="chicken" data-price="2"> Extra Chicken (+$2)</label>
+            <label><input type="checkbox" id="meat" data-price="3"> Extra Meat (+$3)</label>
+            <label><input type="checkbox" id="cheese" data-price="1.5"> Extra Cheese (+$1.5)</label>
         </div>
 
         <!-- Confirm Order Button -->
@@ -403,29 +456,64 @@
             });
         });
 
-        // Select Menu Items
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('selected');
+        // Quantity Counter Functionality
+        const quantityCounters = document.querySelectorAll('.quantity-counter');
+        quantityCounters.forEach(counter => {
+            const minusBtn = counter.querySelector('.minus-btn');
+            const plusBtn = counter.querySelector('.plus-btn');
+            const quantityInput = counter.querySelector('.quantity');
+
+            minusBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 0) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            plusBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
             });
         });
 
         // Confirm Order Functionality
         function confirmOrder() {
-            const selectedItems = document.querySelectorAll('.menu-item.selected');
-            if (selectedItems.length === 0) {
-                alert('Please select at least one item to confirm your order.');
+            const selectedItems = document.querySelectorAll('.menu-item input[type="checkbox"]:checked');
+            const selectedToppings = document.querySelectorAll('.toppings-section input[type="checkbox"]:checked');
+
+            if (selectedItems.length === 0 && selectedToppings.length === 0) {
+                alert('Please select at least one item or topping to confirm your order.');
                 return;
             }
 
             const cart = [];
+            let totalPrice = 0;
+
+            // Add selected pizzas to the cart
             selectedItems.forEach(item => {
-                const itemName = item.querySelector('h3').textContent;
-                const itemPrice = parseFloat(item.getAttribute('data-price'));
-                cart.push({ name: itemName, price: itemPrice });
+                const quantity = parseInt(item.closest('.menu-item').querySelector('.quantity').value);
+                if (quantity > 0) {
+                    const itemName = item.closest('.menu-item').querySelector('h3').textContent;
+                    const itemPrice = parseFloat(item.closest('.menu-item').getAttribute('data-price'));
+                    const itemTotal = itemPrice * quantity;
+                    cart.push({ name: itemName, price: itemPrice, quantity: quantity, total: itemTotal });
+                    totalPrice += itemTotal;
+                }
             });
 
+            // Add selected toppings to the cart
+            selectedToppings.forEach(topping => {
+                const toppingName = topping.nextSibling.textContent.trim();
+                const toppingPrice = parseFloat(topping.getAttribute('data-price'));
+                cart.push({ name: toppingName, price: toppingPrice, quantity: 1, total: toppingPrice });
+                totalPrice += toppingPrice;
+            });
+
+            // Save cart and total price to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+
+            // Redirect to the cart page
             window.location.href = 'cart.html';
         }
     </script>
